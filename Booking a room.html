@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <title>Booking a room </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Tshwane Hotel</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>The Tshwane Hotel</h1>
+        <nav class="nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="rooms.html">Rooms</a></li>
+                <li><a href="login.html">Log In</a></li>
+                <li><a href="register.html">Create an account?</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="b_main" background = "background: url('hotel-background.jpg') no-repeat center center/cover;">
+        
+        <div class="form-container">
+            <h2 class="b_room">Book a Room</h2>
+            <form action="booking.php" method="POST">
+              
+          
+              <div class="guest-wrapper">
+                <div class="guest-group">
+                  <div class="guest-label">Adults</div>
+                  <div class="guest-controls">
+                    <button type="button" onclick="changeCount('adults', -1)">-</button>
+                    <div class="guest-number" id="adults-count">1</div>
+                    <button type="button" onclick="changeCount('adults', 1)">+</button>
+                  </div>
+                </div>
+            
+                <div class="guest-group">
+                  <div class="guest-label">Children (0–18 yrs)</div>
+                  <div class="guest-controls">
+                    <button type="button" onclick="changeCount('children', -1)">-</button>
+                    <div class="guest-number" id="children-count">0</div>
+                    <button type="button" onclick="changeCount('children', 1)">+</button>
+                  </div>
+                </div>
+              </div>
+
+          
+              <!-- Hidden inputs to submit counts -->
+              <input type="hidden" name="adults" id="adults-input" value="1">
+              <input type="hidden" name="children" id="children-input" value="0">
+          
+              <div class="form-group">
+                <label for="checkin">Check-in Date</label>
+                <input type="date" id="checkin" name="checkin" required>
+              </div>
+          
+              <div class="form-group">
+                <label for="checkout">Check-out Date</label>
+                <input type="date" id="checkout" name="checkout" required>
+              </div>
+              <div class="form-group">
+                <label for="email">email</label>
+                <input type="email" id="email" name="email" required placeholder="someone@gmail.com">
+              </div>
+          
+              <div class="form-group">
+                <input type="submit" value="Book Now">
+              </div>
+            </form>
+          </div>
+          
+          <script>
+            const counts = { adults: 1, children: 0 };
+        
+            function changeCount(type, delta) {
+              if (type === 'adults' && counts[type] + delta >= 1) {
+                counts[type] += delta;
+              } else if (type === 'children' && counts[type] + delta >= 0) {
+                counts[type] += delta;
+              }
+              document.getElementById(`${type}-count`).textContent = counts[type];
+            }
+          </script>
+          
+        
+       
+    </main>
+
+    <footer>
+        <p>&copy; 2025 The Tshwane Hotel. All rights reserved.</p>
+    </footer>
+</html>
